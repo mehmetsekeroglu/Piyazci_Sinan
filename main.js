@@ -140,15 +140,22 @@ const europeanCountry = [
   "Sweden",
   "Ireland",
 ];
-let totalStockVolumeKg = null;
+
 let mostExpensiveFish = [];
 const swissRomandeRegion = ["FR","GE","JU","NE","VL","VD"]
 
 
+function findFishInRomandeRegion(pRegionList,pFarmList) {
+  let fishInRomandeRegionList=null
+  for (let index = 0; index < pRegionList.length; index++) {
+    const region = pRegionList[index];
+    fishInRomandeRegionList =pFarmList.filter(fish=>fish.saleLocations.includes(region))
+  }
+  return fishInRomandeRegionList
+  }
 
 
 
 
-//  Kis ve sonbahar sezonu icin swiss romande region'da satilan baliklarin ortalama fiyati nedir?
-// 10) Ticino Kantonu icin stokta toplam ne kadar balik mevcuttur?
+
 // 11) Yazlik sezonda cikan ve AB disindan gelen ve de ZH'de satilan baliklarin ortalama gramajini bulunuz?

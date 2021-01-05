@@ -89,6 +89,7 @@ console.log(sortAlphabeticalList(europeanFish));
  * @param {*} pFarmList 
  */
 function findTotalFishStock(pFarmList) {
+  let totalStockVolumeKg = null;
     pFarmList.map(fish=>{
     totalStockVolumeKg+= fish.stockVolumeInKg 
 }) 
@@ -168,3 +169,16 @@ function findFishInRomandeRegion(pRegionList,pFarmList) {
   }
   
   console.log(findAveragePrice(swissRomandeRegion, fishFarm))
+
+  /**
+ * Ticino Kantonunda satilabilecek balik stogunu bulur
+ * @param {*} pFarmList 
+ */
+function findTicinoFishStock(pFarmList) {
+  let ticinoFishStock = 0
+  pFarmList.filter(fish=>fish.saleLocations.includes("TI"))
+           .map(fish=>ticinoFishStock+= fish.stockVolumeInKg)
+  return ticinoFishStock 
+  }
+  
+  console.log(findTicinoFishStock(fishFarm))
