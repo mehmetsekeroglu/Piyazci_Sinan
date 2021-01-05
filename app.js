@@ -130,3 +130,41 @@ function findMaxDurationFishCountry(pFarmList) {
   })
   return maxDurationFishCountry
 }
+
+/**
+ * Swiss Romande bölgesinde satilan baliklari bulur
+ * @param {*} pRegionList 
+ * @param {*} pFarmList 
+ */
+function findFishInRomandeRegion(pRegionList,pFarmList) {
+  let fishInRomandeRegionList=null
+  for (let index = 0; index < pRegionList.length; index++) {
+    const region = pRegionList[index];
+    fishInRomandeRegionList =pFarmList.filter(fish=>fish.saleLocations.includes(region))
+  }
+  return fishInRomandeRegionList
+  }
+  /**
+   * Swiss Romande bölgesinde sonbahar ve kis aylarinda satilan baliklari bulur
+   * @param {*} pRegionList 
+   * @param {*} pFarmList 
+   */
+  function findWithSeasonFishList(pRegionList,pFarmList) {
+  let listInSeason = (fish)=>(fish.season===("Autumn")||fish.season===("Winter"))
+  let withSeasonList = findFishInRomandeRegion(pRegionList,pFarmList).filter(listInSeason)
+  return withSeasonList
+  }
+  
+  /**
+   * Swiss Romande bölgesinde sonbahar ve kis aylarinda satilan baliklarin ortalama satis fiyatini bulur
+   * @param {*} pRegionList 
+   * @param {*} pFarmList 
+   */
+  function findAveragePrice (pRegionList,pFarmList) {
+  let totalPrice = null;
+  findWithSeasonFishList(pRegionList,pFarmList).map(fish => totalPrice += fish.price)
+  let averagePrice = Math.round(totalPrice / findWithSeasonFishList(pRegionList,pFarmList).length)
+  return averagePrice 
+  }
+  
+  console.log(findAveragePrice(swissRomandeRegion, fishFarm))

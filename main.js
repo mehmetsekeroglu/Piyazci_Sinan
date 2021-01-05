@@ -144,18 +144,11 @@ let totalStockVolumeKg = null;
 let mostExpensiveFish = [];
 const swissRomandeRegion = ["FR","GE","JU","NE","VL","VD"]
 
-fishFarm.filter(fish=>fish.season===("Autumn"||"Winter"))
 
-//let result = null
 
-// swissRomandeRegion.map((region)=>{
-//   result= fishFarm.filter(fish=> fish.saleLocations.includes(region))
-// })
-//console.log(result)
-let listRomande = (region)=>
-let listInSeason = (fish)=>fish.season===("Autumn")||fish.season===("Winter")
-let result = fishFarm.filter(listInSeason);
-console.log(result)
+
+
+
 //  Kis ve sonbahar sezonu icin swiss romande region'da satilan baliklarin ortalama fiyati nedir?
 // 10) Ticino Kantonu icin stokta toplam ne kadar balik mevcuttur?
 // 11) Yazlik sezonda cikan ve AB disindan gelen ve de ZH'de satilan baliklarin ortalama gramajini bulunuz?
