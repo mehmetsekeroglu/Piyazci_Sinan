@@ -110,15 +110,14 @@ function findMaxDurationFishCountry(pFarmList) {
   pFarmList.filter((fish) => {
     if (maxDurationInDay === fish.durationInDays) {
       maxDurationFishCountry.push({
-        FISH: fish.fishType,
-        COUNTRY: fish.originCountry,
-        DURATION_DAYS: fish.durationInDays,
-      })
+         FISH:fish.fishType,
+         COUNTRY:fish.originCountry,
+         DURATION_DAYS:fish.durationInDays,
+    })
     }
   })
   return maxDurationFishCountry
 }
-
 /**
  * Swiss Romande bölgesinde satilan baliklari bulur
  * @param {*} pRegionList 
