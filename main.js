@@ -141,7 +141,6 @@ const europeanCountry = [
 ];
 const swissRomandeRegion = ["FR", "GE", "JU", "NE", "VL", "VD"];
 
-
 /**************SORU-1******************/
 let over500kgFishList = findOverStockVolumeFishList(fishFarm, 500)
 console.log("Stok miktari 500 kg uzerinde olan baliklarin isimleri:")
@@ -179,7 +178,8 @@ console.log(`Ciftlikteki en pahali balik: ${mostExpensiveFish} CHF`)
 
 /**************SORU-8******************/
 let maxDurationFishCountry = findMaxDurationFishCountry(fishFarm);
-console.log(maxDurationFishCountry)
+let viewMaxDurationFishCountry =["En uzun sure dayanabilen baliklarin ithal edildigi ülkeler, balik türleri ve dayanma süreleri:", maxDurationFishCountry] 
+console.log(viewMaxDurationFishCountry)
 
 /**************SORU-9******************/
 //Swiss Romande Bölgesinde satilan baliklar

@@ -21,12 +21,6 @@ function findSpecialPriceRangeFish(pFarmList, pLowPrice, pHighPrice) {
   );
   return specialPriceRangeFish;
 }
-
-
-
-
-
-
 /**
  * Son kullanma tarihini de iceren balik listesi olusturur
  * @param {obj} pFarmList
