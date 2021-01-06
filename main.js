@@ -143,34 +143,60 @@ const swissRomandeRegion = ["FR", "GE", "JU", "NE", "VL", "VD"];
 
 
 /**************SORU-1******************/
-let over500kgFishList=findOverStockVolumeFishList(fishFarm,500)
+let over500kgFishList = findOverStockVolumeFishList(fishFarm, 500)
 console.log("Stok miktari 500 kg uzerinde olan baliklarin isimleri:")
-over500kgFishList.map(fish=>console.log(`FISH: ${fish.fishType} STOCK: ${fish.stockVolumeInKg}`))
+over500kgFishList.map(fish => console.log(`FISH: ${fish.fishType} STOCK: ${fish.stockVolumeInKg}`))
 
 /**************SORU-2******************/
-let specialPriceRangeFish=findSpecialPriceRangeFish(fishFarm,9,12)
+let specialPriceRangeFish = findSpecialPriceRangeFish(fishFarm, 9, 12)
 console.log("9-12 fiyat araligindaki baliklarin isimleri:")
-specialPriceRangeFish.map(fish=>console.log(`FISH: ${fish.fishType} PRICE: ${fish.price}`))
+specialPriceRangeFish.map(fish => console.log(`FISH: ${fish.fishType} PRICE: ${fish.price}`))
 
 /**************SORU-3******************/
 //Bern Kantonunda Kis mevsiminde satilan baliklar
-let fishInBernInWinter = findInSeasonInLocationFish(fishFarm,"Winter","BE");
+let fishInBernInWinter = findInSeasonInLocationFish(fishFarm, "Winter", "BE");
 //Bern Kantonunda Kis mevsiminde satilan baliklarin ekrana yazdirilmasi
-let viewFishInBernInWinter =viewFishType(fishInBernInWinter)
+let viewFishInBernInWinter = viewFishType(fishInBernInWinter)
 
 /**************SORU-4******************/
-let lastUseDate=findLastUseDate(fishFarm)
-let sortedLastUseDate=sortLastUseDate(lastUseDate)
+let lastUseDate = findLastUseDate(fishFarm)
+let sortedLastUseDate = sortLastUseDate(lastUseDate)
 console.log("Son kullanma tarihini iceren balik listesi:")
-sortedLastUseDate.map(fish=>console.log(` DATE: ${fish.date} FISH: ${fish.name}`))
+sortedLastUseDate.map(fish => console.log(` DATE: ${fish.date} FISH: ${fish.name}`))
+
+/**************SORU-5******************/
+let europeanFish = findEuropeanFish(fishFarm, europeanCountry, 10)
+let sortedAlphabeticalList = sortAlphabeticalList(europeanFish)
+console.log(`AB kaynakli 10 CHF'den daha ucuz ve alfabetik olarak siralanmis baliklar: ${sortedAlphabeticalList}`)
+
+/**************SORU-6******************/
+let totalFishStock = findTotalFishStock(fishFarm)
+console.log(`Toplam Balik Stogu : ${totalFishStock} Kg`)
+
+/**************SORU-7******************/
+let mostExpensiveFish = findMostExpensiveFish(fishFarm)
+console.log(`Ciftlikteki en pahali balik: ${mostExpensiveFish} CHF`)
+
+/**************SORU-8******************/
+let maxDurationFishCountry = findMaxDurationFishCountry(fishFarm);
+console.log(maxDurationFishCountry)
+
+/**************SORU-9******************/
+//Swiss Romande Bölgesinde satilan baliklar
+let fishInRomandeRegion = findFishInRomandeRegion(swissRomandeRegion, fishFarm);
+//Swiss Romande Bölgesinde Sonbahar ve Kis aylarinda satilan baliklar
+let withSeasonFishList = findWithSeasonFishList(fishInRomandeRegion);
+//Swiss Romande Bölgesinde Sonbahar ve Kis aylarinda satilan baliklarin ortalama fiyati
+let averageFishPrice = findAveragePrice(withSeasonFishList)
+console.log(`Kis ve sonbahar sezonu icin swiss romande region'da satilan baliklarin ortalama fiyati ${averageFishPrice}`)
+
+/**************SORU-10******************/
+let ticinoFishStock = findLocationFishStock(fishFarm,"TI")
+console.log(`Ticino Kantonunda satilabilecek balik stogu: ${ticinoFishStock} kg`)
 
 /**************SORU-11******************/
 //Zurih Kantonunda Yaz mevsiminde satilan baliklar
-let fishInSummerInZurih=findInSeasonInLocationFish(fishFarm, "Summer", "ZH");
+let fishInSummerInZurih = findInSeasonInLocationFish(fishFarm, "Summer", "ZH");
 //Zurih Kantonunda Yaz mevsiminde satilan baliklarin gramajlarinin ortalamasi
- let avarageFishInSummerInZurih=findAverageFishGram(fishInSummerInZurih)
-console.log(avarageFishInSummerInZurih);
-
-
-
-
+let avarageFishInSummerInZurih = findAverageFishGram(fishInSummerInZurih)
+console.log(`Zurih Kantonunda Yaz mevsiminde satilan baliklarin gramajlarinin ortalamasi: ${avarageFishInSummerInZurih}`);
