@@ -178,7 +178,7 @@ console.log(`Ciftlikteki en pahali balik: ${mostExpensiveFish} CHF`)
 
 /**************SORU-8******************/
 let maxDurationFishCountry = findMaxDurationFishCountry(fishFarm);
-let viewMaxDurationFishCountry =["En uzun sure dayanabilen baliklarin ithal edildigi ülkeler, balik türleri ve dayanma süreleri:", maxDurationFishCountry] 
+let viewMaxDurationFishCountry = ["En uzun sure dayanabilen baliklarin ithal edildigi ülkeler, balik türleri ve dayanma süreleri:", maxDurationFishCountry]
 console.log(viewMaxDurationFishCountry)
 
 /**************SORU-9******************/
@@ -191,7 +191,7 @@ let averageFishPrice = findAveragePrice(withSeasonFishList)
 console.log(`Kis ve sonbahar sezonu icin swiss romande region'da satilan baliklarin ortalama fiyati ${averageFishPrice}`)
 
 /**************SORU-10******************/
-let ticinoFishStock = findLocationFishStock(fishFarm,"TI")
+let ticinoFishStock = findLocationFishStock(fishFarm, "TI")
 console.log(`Ticino Kantonunda satilabilecek balik stogu: ${ticinoFishStock} kg`)
 
 /**************SORU-11******************/
