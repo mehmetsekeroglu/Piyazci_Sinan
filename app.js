@@ -182,3 +182,28 @@ function findTicinoFishStock(pFarmList) {
   }
   
   console.log(findTicinoFishStock(fishFarm))
+
+  /**
+ * Belirli bir mevsimde belirli bir gölgede satilan baliklari bulur
+ * @param {*} pFarmList 
+ * @param {*} pSeason 
+ * @param {*} pLocation 
+ */
+function findInSeasonInLocationFish(pFarmList, pSeason, pLocation) {
+  let listInSeasonInLocation = (fish) => (fish.season.includes(pSeason) && fish.saleLocations.includes(pLocation))
+  let listInSeasonInLocationFish = pFarmList.filter(listInSeasonInLocation)
+  return listInSeasonInLocationFish
+}
+/**
+ * Belirli bir bölgede belirli bir mevsimde satilan baliklarin ortalama gramajini bulur.
+ * @param {*} pFarmList 
+ * @param {*} pSeason 
+ * @param {*} pLocation 
+ */
+function findAverageFishGram(pFarmList, pSeason, pLocation) {
+  let totalGram = null;
+  findInSeasonInLocationFish(pFarmList, pSeason, pLocation).map(fish => totalGram += fish.itemWeightInGrams)
+  let averageFishGram = Math.round(totalGram / findInSeasonInLocationFish(pFarmList, pSeason, pLocation).length)
+  return averageFishGram
+}
+console.log(findAverageFishGram(fishFarm, "Summer", "ZH"))

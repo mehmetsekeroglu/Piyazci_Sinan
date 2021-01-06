@@ -142,20 +142,8 @@ const europeanCountry = [
 ];
 
 let mostExpensiveFish = [];
-const swissRomandeRegion = ["FR","GE","JU","NE","VL","VD"]
-
-
-function findFishInRomandeRegion(pRegionList,pFarmList) {
-  let fishInRomandeRegionList=null
-  for (let index = 0; index < pRegionList.length; index++) {
-    const region = pRegionList[index];
-    fishInRomandeRegionList =pFarmList.filter(fish=>fish.saleLocations.includes(region))
-  }
-  return fishInRomandeRegionList
-  }
+const swissRomandeRegion = ["FR", "GE", "JU", "NE", "VL", "VD"]
 
 
 
 
-
-// 11) Yazlik sezonda cikan ve AB disindan gelen ve de ZH'de satilan baliklarin ortalama gramajini bulunuz?
