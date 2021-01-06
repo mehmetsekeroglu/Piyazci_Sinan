@@ -139,37 +139,23 @@ const europeanCountry = [
   "Sweden",
   "Ireland",
 ];
-const swissRomandeRegion = ["FR", "GE", "JU", "NE", "VL", "VD"];
 
+function findLastUseDate(pFarmList) {
+    let withExpDateList = [];
+    pFarmList.map((fish) => {
+      fish.entryDate.setDate(fish.entryDate.getDate() + fish.durationInDays);
+      withExpDateList.push({date:fish.entryDate , name:fish.fishType});
+    });
+    return withExpDateList;
+  }
 
-/**************SORU-1******************/
-let over500kgFishList=findOverStockVolumeFishList(fishFarm,500)
-console.log("Stok miktari 500 kg uzerinde olan baliklarin isimleri:")
-over500kgFishList.map(fish=>console.log(`FISH: ${fish.fishType} STOCK: ${fish.stockVolumeInKg}`))
-
-/**************SORU-2******************/
-let specialPriceRangeFish=findSpecialPriceRangeFish(fishFarm,9,12)
-console.log("9-12 fiyat araligindaki baliklarin isimleri:")
-specialPriceRangeFish.map(fish=>console.log(`FISH: ${fish.fishType} PRICE: ${fish.price}`))
-
-/**************SORU-3******************/
-//Bern Kantonunda Kis mevsiminde satilan baliklar
-let fishInBernInWinter = findInSeasonInLocationFish(fishFarm,"Winter","BE");
-//Bern Kantonunda Kis mevsiminde satilan baliklarin ekrana yazdirilmasi
-let viewFishInBernInWinter =viewFishType(fishInBernInWinter)
-
-/**************SORU-4******************/
-let lastUseDate=findLastUseDate(fishFarm)
-let sortedLastUseDate=sortLastUseDate(lastUseDate)
-console.log("Son kullanma tarihini iceren balik listesi:")
-sortedLastUseDate.map(fish=>console.log(` DATE: ${fish.date} FISH: ${fish.name}`))
-
-/**************SORU-11******************/
-//Zurih Kantonunda Yaz mevsiminde satilan baliklar
-let fishInSummerInZurih=findInSeasonInLocationFish(fishFarm, "Summer", "ZH");
-//Zurih Kantonunda Yaz mevsiminde satilan baliklarin gramajlarinin ortalamasi
- let avarageFishInSummerInZurih=findAverageFishGram(fishInSummerInZurih)
-console.log(avarageFishInSummerInZurih);
+  function sortLastUseDate(pFishDateList){
+  let withExpDateListToSort = pFishDateList.sort(function (firstFish, secondFish) {
+    return firstFish.date.getTime() - secondFish.date.getTime();
+  
+  });
+  return withExpDateListToSort
+}
 
 
 

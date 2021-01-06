@@ -1,17 +1,13 @@
-/*************  1.SORU *******************/                 
+
 /**
  * Stok miktari 500 kg uzerinde olan baliklari bulur
  * @param {obj} pFarmList
  * @param {int} pFishQuantity
  */
-function findOverStockVolumeFish(pFarmList, pFishQuantity) {
-  let overStockVolumeFish = pFarmList.filter(
-    (fish) => fish.stockVolumeInKg > pFishQuantity
-  );
+function findOverStockVolumeFishList(pFarmList, pFishQuantity) {
+  let overStockVolumeFish = pFarmList.filter((fish) => fish.stockVolumeInKg > pFishQuantity);
   return overStockVolumeFish;
 }
-
-console.log(findOverStockVolumeFish(fishFarm, 500));
 
 /**
  * 9-12 fiyat araligindaki baliklari bulur
@@ -26,51 +22,36 @@ function findSpecialPriceRangeFish(pFarmList, pLowPrice, pHighPrice) {
   return specialPriceRangeFish;
 }
 
-console.log(findSpecialPriceRangeFish(fishFarm, 9, 12));
+
+
 
 let withLastDateList = fishFarm;
 
-/**
- * Belirli bir mevsimde belirli bir bölgede satilan baliklari bulur
- * @param {*} pFarmList 
- * @param {*} pSeason 
- * @param {*} pLocation 
- */
-function findInSeasonInLocationFish(pFarmList, pSeason, pLocation) {
-  let listInSeasonInLocation = (fish) => (fish.season.includes(pSeason) && fish.saleLocations.includes(pLocation))
-  let listInSeasonInLocationFish = pFarmList.filter(listInSeasonInLocation)
-  return listInSeasonInLocationFish
-}
-
-console.log(findInSeasonInLocationFish(fishFarm, "Winter", "BE"))
 
 /**
  * Son kullanma tarihini de iceren balik listesi olusturur
  * @param {obj} pFarmList
  */
-function creatWithLastDayList(pFarmList) {
-  let lastDay = [];
-  pFarmList.map(fish => {
+function findLastUseDate(pFarmList) {
+  let withExpDateList = [];
+  pFarmList.map((fish) => {
     fish.entryDate.setDate(fish.entryDate.getDate() + fish.durationInDays);
-    lastDay.push(fish.entryDate);
-  })
-  for (let index = 0; index < lastDay.length; index++) {
-    withLastDateList[index].expirationDate = lastDay[index];
-  }
-  return withLastDateList;
+    withExpDateList.push({date:fish.entryDate , name:fish.fishType});
+  });
+  return withExpDateList;
 }
+
 /**
  * Son kullanma tarihine göre siralanmis liste olusturur
- * @param {obj} pFarmList
+ * @param {*} pFishDateList 
  */
-function sortetInLastDay(pFarmList) {
-  let sortetFishFarm = creatWithLastDayList(pFarmList).sort(
-    (firstDate, secondDate) =>
-    new Date(firstDate.expirationDate) - new Date(secondDate.expirationDate)
-  );
-  return sortetFishFarm;
+function sortLastUseDate(pFishDateList){
+  let withExpDateListToSort = pFishDateList.sort(function (firstFish, secondFish) {
+    return firstFish.date.getTime() - secondFish.date.getTime();
+  
+  });
+  return withExpDateListToSort
 }
-console.log(sortetInLastDay(fishFarm));
 
 /**
  * Avrupali baliklari bulur
@@ -95,8 +76,8 @@ console.log(findEuropeanFish(fishFarm, europeanCountry))
  * Avrupali baliklari alfabetik siraya dizer
  * @param {*} pFishList 
  */
-function sortAlphabeticalList(pFarmList,pCountryList) {
-  let alphabeticalList = findEuropeanFish(pFarmList,pCountryList).sort();
+function sortAlphabeticalList(pFarmList, pCountryList) {
+  let alphabeticalList = findEuropeanFish(pFarmList, pCountryList).sort();
   return alphabeticalList;
 }
 console.log(sortAlphabeticalList(fishFarm, europeanCountry));
@@ -200,7 +181,6 @@ function findTicinoFishStock(pFarmList) {
 }
 
 console.log(findTicinoFishStock(fishFarm))
-
 /**
  * Belirli bir mevsimde belirli bir gölgede satilan baliklari bulur
  * @param {*} pFarmList 
@@ -208,20 +188,28 @@ console.log(findTicinoFishStock(fishFarm))
  * @param {*} pLocation 
  */
 function findInSeasonInLocationFish(pFarmList, pSeason, pLocation) {
-  let listInSeasonInLocation = (fish) => (fish.season.includes(pSeason) && fish.saleLocations.includes(pLocation))
-  let listInSeasonInLocationFish = pFarmList.filter(listInSeasonInLocation)
-  return listInSeasonInLocationFish
-}
-/**
+  let listInSeasonInLocation=pFarmList.filter((fish) => fish.season===pSeason && fish.saleLocations.includes(pLocation))  
+  return listInSeasonInLocation
+ }
+ /**
  * Belirli bir bölgede belirli bir mevsimde satilan baliklarin ortalama gramajini bulur.
  * @param {*} pFarmList 
  * @param {*} pSeason 
  * @param {*} pLocation 
  */
-function findAverageFishGram(pFarmList, pSeason, pLocation) {
-  let totalGram = null;
-  findInSeasonInLocationFish(pFarmList, pSeason, pLocation).map(fish => totalGram += fish.itemWeightInGrams)
-  let averageFishGram = Math.round(totalGram / findInSeasonInLocationFish(pFarmList, pSeason, pLocation).length)
+ function findAverageFishGram(pFishList) {
+  let totalGram = pFishList.reduce((firstFish,secondFish)=>firstFish.itemWeightInGrams+secondFish.itemWeightInGrams);
+  let averageFishGram=totalGram/pFishList.length;
   return averageFishGram
+ }
+/**
+ * Bern Kantonu'nda Kis Sezonunda satilan baliklari ekrana yazdirir
+ * @param {*} pFarmList 
+ */
+ function viewFishType (pFarmList){
+  console.log(`Bern Kantonu'nda Kis Sezonunda satilan baliklar`)
+pFarmList.map(fish=>
+  console.log(`${fish.fishType}`))
 }
-console.log(findAverageFishGram(fishFarm, "Summer", "ZH"))
+
+
