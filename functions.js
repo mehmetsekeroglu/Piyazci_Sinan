@@ -1,3 +1,4 @@
+/*************  1.SORU *******************/                 
 /**
  * Stok miktari 500 kg uzerinde olan baliklari bulur
  * @param {obj} pFarmList
@@ -28,6 +29,21 @@ function findSpecialPriceRangeFish(pFarmList, pLowPrice, pHighPrice) {
 console.log(findSpecialPriceRangeFish(fishFarm, 9, 12));
 
 let withLastDateList = fishFarm;
+
+/**
+ * Belirli bir mevsimde belirli bir bölgede satilan baliklari bulur
+ * @param {*} pFarmList 
+ * @param {*} pSeason 
+ * @param {*} pLocation 
+ */
+function findInSeasonInLocationFish(pFarmList, pSeason, pLocation) {
+  let listInSeasonInLocation = (fish) => (fish.season.includes(pSeason) && fish.saleLocations.includes(pLocation))
+  let listInSeasonInLocationFish = pFarmList.filter(listInSeasonInLocation)
+  return listInSeasonInLocationFish
+}
+
+console.log(findInSeasonInLocationFish(fishFarm, "Winter", "BE"))
+
 /**
  * Son kullanma tarihini de iceren balik listesi olusturur
  * @param {obj} pFarmList
@@ -50,7 +66,7 @@ function creatWithLastDayList(pFarmList) {
 function sortetInLastDay(pFarmList) {
   let sortetFishFarm = creatWithLastDayList(pFarmList).sort(
     (firstDate, secondDate) =>
-      new Date(firstDate.expirationDate) - new Date(secondDate.expirationDate)
+    new Date(firstDate.expirationDate) - new Date(secondDate.expirationDate)
   );
   return sortetFishFarm;
 }
@@ -62,15 +78,16 @@ console.log(sortetInLastDay(fishFarm));
  * @param {*} pCountryList 
  */
 function findEuropeanFish(pFarmList, pCountryList) {
-    pFarmList.filter(fish=>{
+  let europeanFish = [];
+  pFarmList.filter(fish => {
     for (let index = 0; index < pCountryList.length; index++) {
-        const country = pCountryList[index].toLowerCase();
-        if(fish.originCountry.toLowerCase()===country){
-            europeanFish.push(fish.fishType)
-        }
-    }   
-})
-return europeanFish;
+      const country = pCountryList[index].toLowerCase();
+      if (fish.originCountry.toLowerCase() === country) {
+        europeanFish.push(fish.fishType)
+      }
+    }
+  })
+  return europeanFish;
 }
 
 console.log(findEuropeanFish(fishFarm, europeanCountry))
@@ -78,11 +95,11 @@ console.log(findEuropeanFish(fishFarm, europeanCountry))
  * Avrupali baliklari alfabetik siraya dizer
  * @param {*} pFishList 
  */
-function sortAlphabeticalList(pFishList) {
-   let alphabeticalList = pFishList.sort();
-   return alphabeticalList;
+function sortAlphabeticalList(pFarmList,pCountryList) {
+  let alphabeticalList = findEuropeanFish(pFarmList,pCountryList).sort();
+  return alphabeticalList;
 }
-console.log(sortAlphabeticalList(europeanFish));
+console.log(sortAlphabeticalList(fishFarm, europeanCountry));
 
 /**
  * Toplam balik stogunu bulur
@@ -90,10 +107,10 @@ console.log(sortAlphabeticalList(europeanFish));
  */
 function findTotalFishStock(pFarmList) {
   let totalStockVolumeKg = null;
-    pFarmList.map(fish=>{
-    totalStockVolumeKg+= fish.stockVolumeInKg 
-}) 
-return totalStockVolumeKg
+  pFarmList.map(fish => {
+    totalStockVolumeKg += fish.stockVolumeInKg
+  })
+  return totalStockVolumeKg
 }
 
 console.log(findTotalFishStock(fishFarm))
@@ -102,6 +119,7 @@ console.log(findTotalFishStock(fishFarm))
  * @param {*} pFarmList 
  */
 function findMostExpensiveFish(pFarmList) {
+  let mostExpensiveFish = [];
   let priceList = pFarmList.map((fish) => fish.price);
   let highestPrice = Math.max(...priceList);
   pFarmList.find((fish) => {
@@ -137,53 +155,53 @@ function findMaxDurationFishCountry(pFarmList) {
  * @param {*} pRegionList 
  * @param {*} pFarmList 
  */
-function findFishInRomandeRegion(pRegionList,pFarmList) {
-  let fishInRomandeRegionList=null
+function findFishInRomandeRegion(pRegionList, pFarmList) {
+  let fishInRomandeRegionList = null
   for (let index = 0; index < pRegionList.length; index++) {
     const region = pRegionList[index];
-    fishInRomandeRegionList =pFarmList.filter(fish=>fish.saleLocations.includes(region))
+    fishInRomandeRegionList = pFarmList.filter(fish => fish.saleLocations.includes(region))
   }
   return fishInRomandeRegionList
-  }
-  /**
-   * Swiss Romande bölgesinde sonbahar ve kis aylarinda satilan baliklari bulur
-   * @param {*} pRegionList 
-   * @param {*} pFarmList 
-   */
-  function findWithSeasonFishList(pRegionList,pFarmList) {
-  let listInSeason = (fish)=>(fish.season===("Autumn")||fish.season===("Winter"))
-  let withSeasonList = findFishInRomandeRegion(pRegionList,pFarmList).filter(listInSeason)
+}
+/**
+ * Swiss Romande bölgesinde sonbahar ve kis aylarinda satilan baliklari bulur
+ * @param {*} pRegionList 
+ * @param {*} pFarmList 
+ */
+function findWithSeasonFishList(pRegionList, pFarmList) {
+  let listInSeason = (fish) => (fish.season === ("Autumn") || fish.season === ("Winter"))
+  let withSeasonList = findFishInRomandeRegion(pRegionList, pFarmList).filter(listInSeason)
   return withSeasonList
-  }
-  
-  /**
-   * Swiss Romande bölgesinde sonbahar ve kis aylarinda satilan baliklarin ortalama satis fiyatini bulur
-   * @param {*} pRegionList 
-   * @param {*} pFarmList 
-   */
-  function findAveragePrice (pRegionList,pFarmList) {
-  let totalPrice = null;
-  findWithSeasonFishList(pRegionList,pFarmList).map(fish => totalPrice += fish.price)
-  let averagePrice = Math.round(totalPrice / findWithSeasonFishList(pRegionList,pFarmList).length)
-  return averagePrice 
-  }
-  
-  console.log(findAveragePrice(swissRomandeRegion, fishFarm))
+}
 
-  /**
+/**
+ * Swiss Romande bölgesinde sonbahar ve kis aylarinda satilan baliklarin ortalama satis fiyatini bulur
+ * @param {*} pRegionList 
+ * @param {*} pFarmList 
+ */
+function findAveragePrice(pRegionList, pFarmList) {
+  let totalPrice = null;
+  findWithSeasonFishList(pRegionList, pFarmList).map(fish => totalPrice += fish.price)
+  let averagePrice = Math.round(totalPrice / findWithSeasonFishList(pRegionList, pFarmList).length)
+  return averagePrice
+}
+
+console.log(findAveragePrice(swissRomandeRegion, fishFarm))
+
+/**
  * Ticino Kantonunda satilabilecek balik stogunu bulur
  * @param {*} pFarmList 
  */
 function findTicinoFishStock(pFarmList) {
   let ticinoFishStock = 0
-  pFarmList.filter(fish=>fish.saleLocations.includes("TI"))
-           .map(fish=>ticinoFishStock+= fish.stockVolumeInKg)
-  return ticinoFishStock 
-  }
-  
-  console.log(findTicinoFishStock(fishFarm))
+  pFarmList.filter(fish => fish.saleLocations.includes("TI"))
+    .map(fish => ticinoFishStock += fish.stockVolumeInKg)
+  return ticinoFishStock
+}
 
-  /**
+console.log(findTicinoFishStock(fishFarm))
+
+/**
  * Belirli bir mevsimde belirli bir gölgede satilan baliklari bulur
  * @param {*} pFarmList 
  * @param {*} pSeason 

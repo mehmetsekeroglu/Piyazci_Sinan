@@ -110,7 +110,7 @@ const fishFarm = [{
   },
 ];
 
-let europeanFish = [];
+
 const europeanCountry = [
   "Austria",
   "Italy",
@@ -141,20 +141,9 @@ const europeanCountry = [
   "Ireland",
 ];
 
-let mostExpensiveFish = [];
+
 const swissRomandeRegion = ["FR", "GE", "JU", "NE", "VL", "VD"]
 
-  /**
- * Belirli bir mevsimde belirli bir bölgede satilan baliklari bulur
- * @param {*} pFarmList 
- * @param {*} pSeason 
- * @param {*} pLocation 
- */
-function findInSeasonInLocationFish(pFarmList, pSeason, pLocation) {
-  let listInSeasonInLocation = (fish) => (fish.season.includes(pSeason) && fish.saleLocations.includes(pLocation))
-  let listInSeasonInLocationFish = pFarmList.filter(listInSeasonInLocation)
-  return listInSeasonInLocationFish
-}
 
-console.log(findInSeasonInLocationFish(fishFarm,"Winter","BE"))
+
 
