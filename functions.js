@@ -166,9 +166,7 @@ function findInSeasonInLocationFish(pFarmList, pSeason, pLocation) {
 }
 /**
  * Belirli bir bölgede belirli bir mevsimde satilan baliklarin ortalama gramajini bulur.
- * @param {*} pFarmList 
- * @param {*} pSeason 
- * @param {*} pLocation 
+ * @param {*} pFishList 
  */
 function findAverageFishGram(pFishList) {
   let totalGram = pFishList.reduce((firstFish, secondFish) => firstFish.itemWeightInGrams + secondFish.itemWeightInGrams);
