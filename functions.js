@@ -150,12 +150,13 @@ function findAveragePrice(pFishList) {
  */
 function findLocationFishStock(pFarmList, pLocation) {
   let locationFishStock = 0
-  pFarmList.filter(fish => fish.saleLocations.includes(pLocation))
+  pFarmList
+    .filter(fish => fish.saleLocations.includes(pLocation))
     .map(fish => locationFishStock += fish.stockVolumeInKg)
   return locationFishStock
 }
 /**
- * Belirli bir mevsimde belirli bir gölgede satilan baliklari bulur
+ * Belirli bir mevsimde belirli bir bölgede satilan baliklari bulur
  * @param {*} pFarmList 
  * @param {*} pSeason 
  * @param {*} pLocation 
@@ -181,4 +182,20 @@ function viewFishType(pFarmList) {
   console.log(`Bern Kantonu'nda Kis Sezonunda satilan baliklar`)
   pFarmList.map(fish =>
     console.log(`${fish.fishType}`))
+}
+/**
+ * Avrupa disindan gelen ve Yaz mevsiminde Zurihte satilan baliklari bulur 
+ * @param {*} pFarmList 
+ */
+function findNoEuropa(pFarmList) {
+  let noEuropaSummerZh = pFarmList.filter(fish =>
+      (fish.season == "Summer") &
+      fish.saleLocations.includes("ZH") &
+      (fish.originCountry == "Norway" ||
+      fish.originCountry == "Japan" ||
+      fish.originCountry == "United Kingdom" ||
+      fish.originCountry == "Egypt" ||
+      fish.originCountry == "Vietnam")
+  );
+  return noEuropaSummerZh;
 }

@@ -196,7 +196,7 @@ console.log(`Ticino Kantonunda satilabilecek balik stogu: ${ticinoFishStock} kg`
 
 /**************SORU-11******************/
 //Zurih Kantonunda Yaz mevsiminde satilan baliklar
-let fishInSummerInZurih = findInSeasonInLocationFish(fishFarm, "Summer", "ZH");
+let fishInSummerInZurih = findNoEuropa(fishFarm);
 //Zurih Kantonunda Yaz mevsiminde satilan baliklarin gramajlarinin ortalamasi
 let avarageFishInSummerInZurih = findAverageFishGram(fishInSummerInZurih)
-console.log(`Zurih Kantonunda Yaz mevsiminde satilan baliklarin gramajlarinin ortalamasi: ${avarageFishInSummerInZurih}`);
+console.log(`Zurih Kantonuna Avrupa disindan gelen ve Yaz mevsiminde satilan baliklarin gramajlarinin ortalamasi: ${avarageFishInSummerInZurih}`);
