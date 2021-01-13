@@ -189,9 +189,9 @@ function viewFishType(pFarmList) {
  */
 function findNoEuropa(pFarmList) {
   let noEuropaSummerZh = pFarmList.filter(fish =>
-      (fish.season == "Summer") &
-      fish.saleLocations.includes("ZH") &
-      (fish.originCountry == "Norway" ||
+    (fish.season == "Summer") &
+    fish.saleLocations.includes("ZH") &
+    (fish.originCountry == "Norway" ||
       fish.originCountry == "Japan" ||
       fish.originCountry == "United Kingdom" ||
       fish.originCountry == "Egypt" ||
